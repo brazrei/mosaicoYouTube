@@ -1,5 +1,5 @@
 	
-	function trataLinks(links) {
+	function trataLinks(links,auto=false) {
 	  if (!links)
 	    return;
 	  links = links.split(";");
@@ -7,16 +7,16 @@
 	  	for (let i = 0; i<links.length; i++){
  		  $('#inputvideo' + parseInt(i+1)).val(links[i]);
  		}
- 		atualizarTodos();
+ 		atualizarTodos(auto);
 	  }
 	
 	}
-	function getLinks() {
+	function getLinks(auto=false) {
 	 $.ajax({
 	    type: "GET",
 	    url: "getlink.php",
 	    success: function(response){
-        	trataLinks(response);
+        	trataLinks(response,auto);
 	    }
 	 });	
 	}
