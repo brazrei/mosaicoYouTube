@@ -129,7 +129,7 @@
             toggleInputs(chk);
             
             if (chk)
-        	getLinks();
+        	getLinks(true);//true = automatico = náo recarrega os videos
         }
         
 
@@ -214,13 +214,15 @@
           return url
         }
         
-        function atualizarPlayer(p, idInput){
+        function atualizarPlayer(p, idInput, auto){
           if (!p)
           	return;
           let url = document.getElementById(idInput).value;
           if (oldVideo[idInput] == url){
-            p.stopVideo();
-            setTimeout(p.playVideo(),500);
+            if (!auto) {
+              p.stopVideo();
+              setTimeout(p.playVideo(),500);
+            }
             return 
           }
           let videoId = getVideoId(url)
@@ -228,11 +230,11 @@
             p.loadVideoById(videoId);
           oldVideo[idInput] = url
         }
-        function atualizarTodos() {
-        	atualizarPlayer(player1, 'inputvideo1')
-        	atualizarPlayer(player2, 'inputvideo2')
-        	atualizarPlayer(player3, 'inputvideo3')
-        	atualizarPlayer(player4, 'inputvideo4')
+        function atualizarTodos(auto) {
+        	atualizarPlayer(player1, 'inputvideo1',auto)
+        	atualizarPlayer(player2, 'inputvideo2',auto)
+        	atualizarPlayer(player3, 'inputvideo3',auto)
+        	atualizarPlayer(player4, 'inputvideo4',auto)
         }
         
         
