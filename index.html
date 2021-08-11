@@ -92,7 +92,7 @@
                 document.documentElement.requestFullscreen();
             } else {
                 if (document.exitFullscreen) {
-                    document.exitFullscreen();
+                  //  document.exitFullscreen();
                 }
             }
         }
@@ -218,8 +218,11 @@
           if (!p)
           	return;
           let url = document.getElementById(idInput).value;
-          if (oldVideo[idInput] == url)
+          if (oldVideo[idInput] == url){
+            p.stopVideo();
+            setTimeout(p.playVideo(),500);
             return 
+          }
           let videoId = getVideoId(url)
           if (videoId.length>0)
             p.loadVideoById(videoId);
