@@ -1,61 +1,244 @@
 <!DOCTYPE html>
 <html>
-  <body>
-    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
-    <div id="player"></div>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script src="js/jquery.min.js" type="text/javascript"></script>
+  <script src="js/scripts.js" type="text/javascript"></script>
+</head>
+
+<body>
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. 
+    <div>
+        <input type="button" value="Editar" onclick="">
+        <input type="button" value="Exibir" onclick="openFullscreen()">
+    </div> -->
+    <div id="divMosaico" style = "display:none">
+        <div id="player1"></div>
+        <div id="player2"></div>
+        <div id="player3"></div>
+        <div id="player4"></div>
+    </div>
+    <div>
+        <form id="mainForm">
+            <span>
+                <label for="video1">Link do video 1: </label>
+                <input type="text" id="inputvideo1" name="link1" size=50 >
+            </span>
+            <span>
+                <label for="video2">Link do video 2: </label>
+                <input type="text" id="inputvideo2" name="link2" size=50 >
+            </span>
+            <br><br>
+            <span>
+                <label for="video3">Link do video 3: </label>
+                <input type="text" id="inputvideo3" name="link3" size=50 >
+            </span>
+            <span>
+                <label for="video4">Link do video 4: </label>
+                <input type="text" id="inputvideo4" name="link4" size=50 >
+            </span> 
+            <br><br>
+            
+            <input type="button" value="Atualizar Exibição" onclick="atualizarTodos()" size=20 >
+            <input type="button" value="Salvar / Compartilhar Links" size=20 onclick="compartilhar()">
+            <input type="button" value="Importar links" onclick="getLinks()" size=20 > 
+            <br><br>
+            <input type="button" value="Exibir/Ocultar Mosaico" onclick="$('#divMosaico').toggle()" size=20 > 
+            <br><br>
+            <input type="checkbox" id="checkAuto" size=20 onchange="autoGetLinks()" > 
+            <label for = "checkAuto"> Importar Links Automaticamente </ label>
+            
+        </form>
+
+    </div>
 
     <script>
-      // 2. This code loads the IFrame Player API code asynchronously.
-      var tag = document.createElement('script');
-
-      tag.src = "https://www.youtube.com/iframe_api";
-      var firstScriptTag = document.getElementsByTagName('script')[0];
-      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-      // 3. This function creates an <iframe> (and YouTube player)
-      //    after the API code downloads.
-      var player1;
-      var player2;
-      function onYouTubeIframeAPIReady() {
-        player1 = new YT.Player('player', {
-          height: window.innerWidth,
-          width: window.innerHeight,
-          videoId: 'UKQ180iLyM0',
-          events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
-        });
-        
-        player2 = new YT.Player('player', {
-          height: window.innerWidth,
-          width: window.innerHeight,
-          videoId: 'tKqJm0_ZEWU',
-          events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
-          }
-        });
-      }
-
-      // 4. The API will call this function when the video player is ready.
-      function onPlayerReady(event) {
-        event.target.playVideo();
-      }
-
-      // 5. The API calls this function when the player's state changes.
-      //    The function indicates that when playing a video (state=1),
-      //    the player should play for six seconds and then stop.
-      var done = false;
-      function onPlayerStateChange(event) {
-        if (event.data == YT.PlayerState.PLAYING && !done) {
-          setTimeout(stopVideo, 6000);
-          done = true;
+        function getTamX() {
+            return window.innerWidth * 0.97
         }
-      }
-      function stopVideo() {
-        player1.stopVideo();
-      }
+        function getTamY() {
+            return window.innerHeight;
+        }
+
+        function setWidth(e, tam) {
+            document.getElementById(e).width = tam;
+        }
+        function setHeight(e, tam) {
+            document.getElementById(e).height = tam;
+        }
+        function ajustaTela() {
+            let tamX = getTamX()
+            let tamY = getTamY()
+            setWidth("player1", Math.floor(tamX / 2));
+            setWidth("player2", Math.floor(tamX / 2));
+            setWidth("player3", Math.floor(tamX / 2));
+            setWidth("player4", Math.floor(tamX / 2));
+            setHeight("player1", Math.floor(tamY / 2));
+            setHeight("player2", Math.floor(tamY / 2));
+            setHeight("player3", Math.floor(tamY / 2));
+            setHeight("player4", Math.floor(tamY / 2));
+
+        }
+
+        function openFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+        // 2. This code loads the IFrame Player API code asynchronously.
+        var tag = document.createElement('script');
+        window.onresize = ajustaTela;
+
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // 3. This function creates an <iframe> (and YouTube player)
+        //    after the API code downloads.
+        var player1;
+        var player2;
+        var player3;
+        var player4;
+        var oldVideo = []
+        
+        var intervalAt;
+        
+        function autoGetLinks() {
+            if ($("#checkAuto").is(":checked"))
+        	getLinks();
+        }
+        intervalAt = setInterval(autoGetLinks,10000);
+        
+
+        function onYouTubeIframeAPIReady() {
+            let tamX = window.innerWidth * 0.98
+            let tamY = window.innerHeight * 0.99
+
+            player1 = new YT.Player('player1', {
+                height: Math.floor(tamY / 2),
+                width: Math.floor(tamX / 2),
+                videoId: '',
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+
+            player2 = new YT.Player('player2', {
+                height: Math.floor(tamY / 2),
+                width: Math.floor(tamX / 2),
+                top: Math.floor(tamY / 2),
+                left: Math.floor(tamX / 2),
+                videoId: '',
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+            player3 = new YT.Player('player3', {
+                height: Math.floor(tamY / 2),
+                width: Math.floor(tamX / 2),
+                top: Math.floor(tamY / 2),
+                videoId: '',
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+            player4 = new YT.Player('player4', {
+                height: Math.floor(tamY / 2),
+                width: Math.floor(tamX / 2),
+                top: Math.floor(tamY / 2),
+                left: Math.floor(tamX / 2),
+                videoId: '',
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        // 4. The API will call this function when the video player is ready.
+        function onPlayerReady(event) {
+            event.target.playVideo();
+        }
+
+        // 5. The API calls this function when the player's state changes.
+        //    The function indicates that when playing a video (state=1),
+        //    the player should play for six seconds and then stop.
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING && !done) {
+//                setTimeout(stopVideo, 6000);
+            }
+        }
+        function stopVideo() {
+            player1.stopVideo();
+        }
+        
+        function getVideoId(url) {
+          let char;
+          if (url.includes("="))
+            char = "="
+          else if (url.includes("/"))
+            char = "/"
+          else 
+            return url;
+          url = url.split(char)
+          url = url[url.length-1]
+          if (url.includes("&"))
+            url = url.split("&")[0]
+          
+          return url
+        }
+        
+        function atualizarPlayer(p, idInput){
+          let url = document.getElementById(idInput).value;
+          if (oldVideo[idInput] == url)
+            return 
+          let videoId = getVideoId(url)
+          if (videoId.length>0)
+            p.loadVideoById(videoId);
+          oldVideo[idInput] = url
+        }
+        function atualizarTodos() {
+        	atualizarPlayer(player1, 'inputvideo1')
+        	atualizarPlayer(player2, 'inputvideo2')
+        	atualizarPlayer(player3, 'inputvideo3')
+        	atualizarPlayer(player4, 'inputvideo4')
+        }
+        
+        
+	function compartilhar(){ 
+    	 	for (let i = 0; i<4; i++){
+    	 	  let id = '#inputvideo' + parseInt(i+1);
+ 		  let val = $(id).val();
+ 		  $(id).val("https://www.youtube.com/watch?v=" + getVideoId(val));
+ 		}
+   
+	   var values = $('#mainForm').serialize();
+           //var values = document.documentElement.innerHTML;
+           //link1=&link2=&link3=asdSAD&link4=
+
+           $.ajax({
+            url: "savelink.php",
+            type: "post",
+            data: values ,
+            success: function (response) {
+
+              // You will get response from your PHP page (what you echo or print)
+            } ,
+            error: function(jqXHR, textStatus, errorThrown) {
+            console.log(textStatus, errorThrown);
+            }
+           });
+           
+	}
+        
     </script>
-  </body>
+</body>
+
 </html>
