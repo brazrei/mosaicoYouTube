@@ -4,7 +4,9 @@
     $link3 = $_POST['link3'];
     $link4 = $_POST['link4'];
     
-    
+    if (!fileexists("txt"))
+        mkdir('txt', 0777);
+        
     $filename = "txt/links.txt";
     chmod($filename,0777);
     $f = fopen($filename, "w+") or die("fopen failed");
