@@ -4,7 +4,7 @@
     $link3 = $_POST['link3'];
     $link4 = $_POST['link4'];
     
-    if (!fileexists("txt"))
+    if (!file_exists("txt"))
         mkdir('txt', 0777);
         
     $filename = "txt/links.txt";
