@@ -112,7 +112,7 @@
                     'onStateChange': onPlayerStateChange
                 }
             });
-            player4 = new YT.Player('player4', {
+/*            player4 = new YT.Player('player4', {
                 height: Math.floor(tamY / 2),
                 width: Math.floor(tamX / 2),
                 top: Math.floor(tamY / 2),
@@ -122,7 +122,7 @@
                     'onReady': onPlayerReady,
                     'onStateChange': onPlayerStateChange
                 }
-            });
+            });*/
         }
 
         // 4. The API will call this function when the video player is ready.
@@ -178,12 +178,12 @@
         	atualizarPlayer(player1, 'inputvideo1',auto)
         	atualizarPlayer(player2, 'inputvideo2',auto)
         	atualizarPlayer(player3, 'inputvideo3',auto)
-        	atualizarPlayer(player4, 'inputvideo4',auto)
+        	//atualizarPlayer(player4, 'inputvideo4',auto)
         }
         
         
 	function compartilhar(){ 
-    	 	for (let i = 0; i<4; i++){
+    	 	for (let i = 0; i<3; i++){
     	 	  let id = '#inputvideo' + parseInt(i+1);
  		  let val = $(id).val();
  		  $(id).val("https://www.youtube.com/watch?v=" + getVideoId(val));
