@@ -184,7 +184,7 @@
         
         
 	function compartilhar(){ 
-    	 	for (let i = 0; i<3; i++){
+    	 	for (let i = 0; i<4; i++){
     	 	  let id = '#inputvideo' + parseInt(i+1);
  		  let val = $(id).val();
  		  $(id).val("https://www.youtube.com/watch?v=" + getVideoId(val));
