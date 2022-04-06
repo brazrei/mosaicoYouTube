@@ -113,7 +113,7 @@
                     'onStateChange': onPlayerStateChange
                 }
             });
-/*            player4 = new YT.Player('player4', {
+            player4 = new YT.Player('player4', {
                 height: Math.floor(tamY / 2),
                 width: Math.floor(tamX / 2),
                 top: Math.floor(tamY / 2),
@@ -123,7 +123,7 @@
                     'onReady': onPlayerReady,
                     'onStateChange': onPlayerStateChange
                 }
-            });*/
+            });
         }
 
         // 4. The API will call this function when the video player is ready.
