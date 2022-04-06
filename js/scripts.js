@@ -11,6 +11,15 @@
         function setHeight(e, tam) {
             document.getElementById(e).height = tam;
         }
+	
+	function modoExibicao(){
+		$('#checkAuto').attr('checked',true);
+		if (!$("#checkVolmet").is(":checked"))
+			$('#divcgtec').hide();
+		$('#divMosaico').show();
+		openFullscreen();
+		atualizarTodos();
+	}
         function ajustaTela() {
             let tamX = getTamX()
             let tamY = getTamY()
