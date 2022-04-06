@@ -65,7 +65,10 @@
             <input type="checkbox" id="checkAuto" size=20 onchange="autoGetLinks()" > 
             <label for = "checkAuto"> Importar Links Automaticamente </ label>
             <br><br>
-            <input type="button" value="Exibir/Ocultar Mosaico" onclick="$('#divMosaico').toggle();" size=20 > 
+            <input type="checkbox" id="checkVolmet" size=20 onchange="" onclick="$('#divMosaico').toggle();"> 
+            <label for = "checkVolmet"> Exibir Dashboard do Serviço VOLMET </ label>
+            <br><br>
+            <input type="button" value="Exibir/Ocultar Mosaico" onclick="$('#divcgtec').toggle();" size=20 > 
             <br><br>
             <br><br>
             <input type="button" value='Ativar Modo "Exibição"' style="background-color:lightgreen" onclick="$('#checkAuto').attr('checked',true);$('#divMosaico').show();openFullscreen();atualizarTodos();" size=20 >
