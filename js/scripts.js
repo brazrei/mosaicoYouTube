@@ -25,10 +25,10 @@
             setHeight("player4", Math.floor(tamY / 2));
             setHeight("iplayer4", Math.floor((tamY-10) / 2));
 		
-	    document.getElementById("player4").style.position="absolute"
+	    document.getElementById("player4").style.position="fixed"
 
-	    document.getElementById("player4").style.top = Math.floor(tamY / 2);
-	    document.getElementById("player4").style.left = Math.floor(tamX / 2);
+	    document.getElementById("player4").style.top = Math.floor(tamY / 2)+"px";
+	    document.getElementById("player4").style.left = Math.floor(tamX / 2)+"px";
 		
             
 
