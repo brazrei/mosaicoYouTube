@@ -16,12 +16,25 @@
     	body {
        	/* overflow: hidden; Hide scrollbars */
         }
+      .responsive-iframe {
+          position: absolute;
+          top: -150px;
+          bottom: 0;
+          right: 0;
+          width: 100%;
+          height: 2200px;
+          border: none;
+      }
     </style>
     <div id="divMosaico" style = "display:none">
         <div id="player1"></div>
         <div id="player2"></div>
         <div id="player3"></div>
-        <div id="player4"></div>
+        <div id="divcgtec">
+      <iframe id = "cgtec" class = "responsive-iframe" src="https://bi.cgtec.intraer/public/dashboard/c8f05ba3-5346-4017-b642-ba8a7c1203e2?filtro_de_data=past6hours" frameborder="0" style="left:-370px;top: -580px;clip: rect(650px,1280px,1150px,450px);">
+
+        </iframe>
+      </div>
     </div>
     <div>
         <form id="mainForm">
