@@ -56,7 +56,7 @@
         	firstScriptTag = document.getElementsByTagName('script')[0];
         	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);		
 		
-        	intervalAt = setInterval(autoGetLinks,5000);
+        	intervalAt = setInterval(autoGetLinks,10000);
         	getLinks();
 	});
         
