@@ -18,12 +18,12 @@
             setWidth("player2", Math.floor(tamX / 2));
             setWidth("player3", Math.floor(tamX / 2));
             setWidth("player4", Math.floor(tamX / 2));
-            setWidth("iplayer4", Math.floor(tamX / 2));
+            setWidth("iplayer4", Math.floor((tamX-10) / 2));
             setHeight("player1", Math.floor(tamY / 2));
             setHeight("player2", Math.floor(tamY / 2));
             setHeight("player3", Math.floor(tamY / 2));
             setHeight("player4", Math.floor(tamY / 2));
-            setHeight("iplayer4", Math.floor(tamY / 2));
+            setHeight("iplayer4", Math.floor((tamY-10) / 2));
 
         }
 
