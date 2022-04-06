@@ -68,8 +68,8 @@
           
         }
         function autoGetLinks() {
-	    if (document.getElementById('player4').src!=="https://bi.cgtec.intraer/public/dashboard/c8f05ba3-5346-4017-b642-ba8a7c1203e2?filtro_de_data=past6hours")
-		    document.getElementById('player4').src="https://bi.cgtec.intraer/public/dashboard/c8f05ba3-5346-4017-b642-ba8a7c1203e2?filtro_de_data=past6hours"
+	    //if (document.getElementById('player4').src!=="https://bi.cgtec.intraer/public/dashboard/c8f05ba3-5346-4017-b642-ba8a7c1203e2?filtro_de_data=past6hours")
+		//    document.getElementById('player4').src="https://bi.cgtec.intraer/public/dashboard/c8f05ba3-5346-4017-b642-ba8a7c1203e2?filtro_de_data=past6hours"
             let chk = $("#checkAuto").is(":checked");
             toggleInputs(chk);
             
