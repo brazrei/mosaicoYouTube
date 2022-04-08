@@ -1,7 +1,7 @@
         // 2. This code loads the IFrame Player API code asynchronously.
         var tag ;
         var firstScriptTag;
-	var urlVolmet = 
+	var urlVolmet = "https://bi.cgtec.intraer/public/dashboard/c8f05ba3-5346-4017-b642-ba8a7c1203e2?filtro_de_data=past6hours"
 
         // 3. This function creates an <iframe> (and YouTube player)
         //    after the API code downloads.
@@ -78,7 +78,7 @@
 	function updateIframeVolmet(){
 //		document.getElementById('cgtec').contentWindow.location.reload();
 		document.getElementById('cgtec').src = ""
-		document.getElementById('cgtec').src = "https://bi.cgtec.intraer/public/dashboard/c8f05ba3-5346-4017-b642-ba8a7c1203e2?filtro_de_data=past6hours"
+		document.getElementById('cgtec').src = urlVolmet
 	}
 
         function toggleInputs(chk){
