@@ -66,9 +66,15 @@
         	firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);		
 		
         	intervalAt = setInterval(autoGetLinks,10000);
+		intervalVolmet =  setInterval(updateIframeVolmet, 60000)
+		
         	getLinks();
 	});
         
+	function updateIframeVolmet(){
+		document.getElementById('cgtec').contentWindow.location.reload();
+	}
+
         function toggleInputs(chk){
     	 	for (let i = 0; i<4; i++){
     	 	  let id = '#inputvideo' + parseInt(i+1);
@@ -76,6 +82,7 @@
  		}
           
         }
+
         function autoGetLinks() {
 	    if (document.getElementById('cgtec').src!=="https://bi.cgtec.intraer/public/dashboard/c8f05ba3-5346-4017-b642-ba8a7c1203e2?filtro_de_data=past6hours"){
 		    document.getElementById('cgtec').src="https://bi.cgtec.intraer/public/dashboard/c8f05ba3-5346-4017-b642-ba8a7c1203e2?filtro_de_data=past6hours"
