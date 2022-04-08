@@ -1,50 +1,7 @@
-        function getTamX() {
-            return window.innerWidth * 0.97
-        }
-        function getTamY() {
-            return window.innerHeight;
-        }
-
-        function setWidth(e, tam) {
-            document.getElementById(e).width = tam;
-        }
-        function setHeight(e, tam) {
-            document.getElementById(e).height = tam;
-        }
-	
-	function modoExibicao(){
-		$('#checkAuto').attr('checked',true);
-		if (!$("#checkVolmet").is(":checked"))
-			$('#divcgtec').hide();
-		$('#divMosaico').show();
-		openFullscreen();
-		atualizarTodos();
-	}
-        function ajustaTela() {
-            let tamX = getTamX()
-            let tamY = getTamY()
-            setWidth("player1", Math.floor(tamX / 2));
-            setWidth("player2", Math.floor(tamX / 2));
-            setWidth("player3", Math.floor(tamX / 2));
-            setWidth("player4", Math.floor(tamX / 2));
-            setHeight("player1", Math.floor(tamY / 2));
-            setHeight("player2", Math.floor(tamY / 2));
-            setHeight("player3", Math.floor(tamY / 2));
-            setHeight("player4", Math.floor(tamY / 2));
-        }
-
-        function openFullscreen() {
-            if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen();
-            } else {
-                if (document.exitFullscreen) {
-                  //  document.exitFullscreen();
-                }
-            }
-        }
         // 2. This code loads the IFrame Player API code asynchronously.
         var tag ;
         var firstScriptTag;
+	var urlVolmet = 
 
         // 3. This function creates an <iframe> (and YouTube player)
         //    after the API code downloads.
@@ -71,8 +28,57 @@
         	getLinks();
 	});
         
+
+        function getTamX() {
+            return window.innerWidth * 0.97
+        }
+        function getTamY() {
+            return window.innerHeight;
+        }
+
+        function setWidth(e, tam) {
+            document.getElementById(e).width = tam;
+        }
+        function setHeight(e, tam) {
+            document.getElementById(e).height = tam;
+        }
+	
+	function modoExibicao(){
+		$('#checkAuto').attr('checked',true);
+		if (!$("#checkVolmet").is(":checked"))
+			$('#divcgtec').hide();
+		$('#divMosaico').show();
+		openFullscreen();
+		atualizarTodos();
+	}
+
+	function ajustaTela() {
+            let tamX = getTamX()
+            let tamY = getTamY()
+            setWidth("player1", Math.floor(tamX / 2));
+            setWidth("player2", Math.floor(tamX / 2));
+            setWidth("player3", Math.floor(tamX / 2));
+            setWidth("player4", Math.floor(tamX / 2));
+            setHeight("player1", Math.floor(tamY / 2));
+            setHeight("player2", Math.floor(tamY / 2));
+            setHeight("player3", Math.floor(tamY / 2));
+            setHeight("player4", Math.floor(tamY / 2));
+        }
+
+        function openFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                if (document.exitFullscreen) {
+                  //  document.exitFullscreen();
+                }
+            }
+        }
+
 	function updateIframeVolmet(){
-		document.getElementById('cgtec').contentWindow.location.reload();
+//		document.getElementById('cgtec').contentWindow.location.reload();
+		document.getElementById('cgtec').src = ""
+		document.getElementById('cgtec').src = "https://bi.cgtec.intraer/public/dashboard/c8f05ba3-5346-4017-b642-ba8a7c1203e2?filtro_de_data=past6hours"
 	}
 
         function toggleInputs(chk){
@@ -84,10 +90,10 @@
         }
 
         function autoGetLinks() {
-	    if (document.getElementById('cgtec').src!=="https://bi.cgtec.intraer/public/dashboard/c8f05ba3-5346-4017-b642-ba8a7c1203e2?filtro_de_data=past6hours"){
+	    /*if (document.getElementById('cgtec').src!==""){
 		    document.getElementById('cgtec').src="https://bi.cgtec.intraer/public/dashboard/c8f05ba3-5346-4017-b642-ba8a7c1203e2?filtro_de_data=past6hours"
 		    //document.getElementById('player4').style.transform
-	    }
+	    }*/
             let chk = $("#checkAuto").is(":checked");
             toggleInputs(chk);
             
