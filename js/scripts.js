@@ -51,6 +51,7 @@
 		openFullscreen();
 		atualizarTodos();
 	}
+	
 
 	function ajustaTela() {
             let tamX = getTamX()
